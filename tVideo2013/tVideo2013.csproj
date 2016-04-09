@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="constData.cs" />
-    <Compile Include="DrawMatches.cs" />
+    <Compile Include="BoxMatches.cs" />
     <Compile Include="interfaceMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,9 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tdrawPrco.cs" />
     <Compile Include="tImgProcess.cs" />
     <Compile Include="tLog.cs" />
+    <Compile Include="tScreen.cs" />
     <Compile Include="tWebPage.cs" />
     <EmbeddedResource Include="interfaceMain.resx">
       <DependentUpon>interfaceMain.cs</DependentUpon>

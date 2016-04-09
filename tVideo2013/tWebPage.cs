@@ -36,11 +36,7 @@ namespace tVideo2013
                 if (  maxWebPage() )         //最大化首页
                 {
                     Thread.Sleep(constData.timeWait );
-                    //获取当前界面的图片，
-                   //static extern InPtr GetDesktopWindow();
-
-                   int a =  SystemInformation.WorkingArea.Size.Width;
-                    if( inputPassword(constData.img_web1,constData.Box_logIn) )                //定位，输入密码
+                    if( inputPassword(constData.img_web1,constData.Box_logIn) )   //定位，输入密码
                     {
                         Thread.Sleep( constData.timeWait );
                         if (  nextPageRealTimeMonitor() ) //进入实时监控界面 
@@ -100,24 +96,17 @@ namespace tVideo2013
         private bool inputPassword(string img1 ,string box)
         {
             //对屏幕进行截图，匹配找到输入密码的位置
-          //  Image<Gray, Byte> modelImage, 
-          //Image<Gray, byte> observedImage,
-          //out long matchTime, 
-          //out VectorOfKeyPoint modelKeyPoints, 
-          //out VectorOfKeyPoint observedKeyPoints, 
-          //out Matrix<int> indices, 
-          //out Matrix<byte> mask, 
-          //out HomographyMatrix homography)
-            DrawMatches.FindMatch();
+
+            //获取当前界面的灰度图片
+            Image<Gray, byte> allGrayImg = tScreen.getScreen().Clone().Convert<Gray, byte>();
+            Image<Gray, byte> boxImg = new Image<Gray, byte>(constData.BoxFilePath + constData.Box_logIn);
+            Point LUP;//匹配结果，局部左上角点的坐标在全局的位置
+            BoxMatches.FindMatch(allGrayImg, boxImg, out LUP);
+
 
             //输入密码
-            long matchTime;
-            using (Image<Gray, Byte> modelImage = new Image<Gray, byte>("box.png"))
-            using (Image<Gray, Byte> observedImage = new Image<Gray, byte>("box_in_scene.png"))
-            {
-                Image<Bgr, byte> result = DrawMatches.Draw(modelImage, observedImage, out matchTime);
-                //ImageViewer.Show(result, String.Format("Matched using {0} in {1} milliseconds", GpuInvoke.HasCuda ? "GPU" : "CPU", matchTime));
-            }
+            //模拟鼠标操作，点击
+          
 
             return true;
         }

@@ -72,7 +72,7 @@ namespace tVideo2013
             using (Image<Gray, Byte> modelImage = new Image<Gray, byte>("box.png"))
             using (Image<Gray, Byte> observedImage = new Image<Gray, byte>("box_in_scene.png"))
             {
-                Image<Bgr, byte> result = DrawMatches.Draw(modelImage, observedImage, out matchTime);
+                Image<Bgr, byte> result = BoxMatches.Draw(modelImage, observedImage, out matchTime);
                 ImageViewer.Show(result, String.Format("Matched using {0} in {1} milliseconds", GpuInvoke.HasCuda ? "GPU" : "CPU", matchTime));
             }
 
